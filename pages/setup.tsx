@@ -149,7 +149,7 @@ const SetupForm = ({
     return (
         <Stack gap="12">
             <Box>
-                <Label htmlFor="api-key">API Key:</Label>
+                <label htmlFor="api-key">Replicate API Key:</label>
                 <Input id="api-key" value={apiKey} onChange={onChange} />
             </Box>
         </Stack>
