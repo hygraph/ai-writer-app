@@ -1,6 +1,7 @@
 import { useFormSidebarExtension, Wrapper } from "@graphcms/app-sdk-react";
 import { Button, Flex } from "@hygraph/baukasten";
 import { useEffect, useState } from "react";
+import { baseUrl } from "../helpers/common";
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -27,7 +28,7 @@ function SidebarElement() {
     const handleFieldChange = async (e: any) => {
         e.preventDefault();
         setIsLoading(true);
-        const response = await fetch("http://localhost:3001/api/predictions", {
+        const response = await fetch(`${baseUrl}/api/predictions`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -50,7 +51,7 @@ function SidebarElement() {
         ) {
             await sleep(1000);
             const response: any = await fetch(
-                `http://localhost:3001/api/predictions/${prediction.id}`,
+                `${baseUrl}/api/predictions/${prediction.id}`,
                 {
                     method: "POST",
                     headers: {

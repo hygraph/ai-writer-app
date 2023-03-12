@@ -1,6 +1,7 @@
 import { useFormSidebarExtension, Wrapper } from "@graphcms/app-sdk-react";
 import { Button, Flex } from "@hygraph/baukasten";
 import { useEffect, useState } from "react";
+import { baseUrl } from "../helpers/common";
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -25,7 +26,7 @@ function SidebarElement() {
         e.preventDefault();
         setIsLoading(true);
         console.log(title);
-        const response = await fetch(`http://localhost:3001/api/generate`, {
+        const response = await fetch(`${baseUrl}/api/generate`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

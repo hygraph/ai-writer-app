@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next/types";
+import { baseUrl } from "../../helpers/common";
 
 const managementApiUrl = "https://management.hygraph.com";
 export default async function handler(
@@ -18,7 +19,7 @@ export default async function handler(
     const { appToken } = (await response.json()) as { appToken: string };
 
     // Create Model
-    // const createModel = await fetch(`http://localhost:3001/api/createModel`, {
+    // const createModel = await fetch(`${baseUrl}/api/createModel`, {
     //     method: "POST",
     //     headers: { "Content-Type": "application/json" },
     //     body: JSON.stringify({

@@ -11,6 +11,7 @@ import {
 } from "@hygraph/baukasten";
 import { useRouter } from "next/router";
 import { ChangeEventHandler, useState } from "react";
+import { baseUrl } from "../helpers/common";
 
 const appTitle = "Alt Text Generator";
 const appDescription =
@@ -32,7 +33,7 @@ function Install({ code }: { code: string }) {
     const [apiKey, setApiKey] = useState("");
 
     const createResources = async (appToken: string, endpoint: string) => {
-        fetch(`http://localhost:3001/api/createField`, {
+        fetch(`${baseUrl}/api/createField`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -53,7 +54,7 @@ function Install({ code }: { code: string }) {
 
     const handleInstall = async (e: any) => {
         setIsSaving(true);
-        fetch(`http://localhost:3001/api/saveAppToken`, {
+        fetch(`${baseUrl}/api/saveAppToken`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

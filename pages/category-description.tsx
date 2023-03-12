@@ -1,7 +1,7 @@
 import { useFormSidebarExtension, Wrapper } from "@graphcms/app-sdk-react";
-import htmlToSlateAST from "@graphcms/html-to-slate-ast";
 import { Button, Flex } from "@hygraph/baukasten";
 import { useEffect, useState } from "react";
+import { baseUrl } from "../helpers/common";
 
 function SidebarElement() {
     const { installation, form, entry } = useFormSidebarExtension();
@@ -19,7 +19,7 @@ function SidebarElement() {
         e.preventDefault();
         setIsLoading(true);
         const response = await fetch(
-            "http://localhost:3001/api/bikes/category-description",
+            `${baseUrl}/api/bikes/category-description`,
             {
                 method: "POST",
                 headers: {

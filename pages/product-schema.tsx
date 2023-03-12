@@ -1,13 +1,10 @@
 import { useFormSidebarExtension, Wrapper } from "@graphcms/app-sdk-react";
 import { Button, Flex } from "@hygraph/baukasten";
 import { useEffect, useState } from "react";
-
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-
-const cheerio = require("cheerio");
+import { baseUrl } from "../helpers/common";
 
 function SidebarElement() {
-    const { installation, form, entry } = useFormSidebarExtension();
+    const { form } = useFormSidebarExtension();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<any>(null);
     const [slug, setSlug] = useState<any>(null);
@@ -25,18 +22,15 @@ function SidebarElement() {
     const handleProductSchema = async (e: any) => {
         e.preventDefault();
         setIsLoading(true);
-        const response = await fetch(
-            "http://localhost:3001/api/bikes/by-slug",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    slug,
-                }),
-            }
-        ).finally(() => {
+        const response = await fetch(`${baseUrl}/api/bikes/by-slug`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                slug,
+            }),
+        }).finally(() => {
             setIsLoading(false);
         });
 
