@@ -1,27 +1,37 @@
 {
-  "name": "hygraph-app-boilerplate",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@fontsource/inter": "^4.5.14",
-    "@graphcms/app-sdk-react": "^0.0.5",
-    "@hygraph/baukasten": "^0.3.0",
-    "@types/node": "18.11.9",
-    "@types/react": "18.0.25",
-    "@types/react-dom": "18.0.9",
-    "eslint": "8.28.0",
-    "eslint-config-next": "13.0.4",
-    "next": "13.0.4",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "typescript": "4.9.3"
-  }
+    "name": "ai-writter-app",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@emotion/react": "^11.10.5",
+        "@emotion/styled": "^11.10.5",
+        "@fontsource/inter": "^4.5.14",
+        "@graphcms/app-sdk-react": "^0.0.5",
+        "@graphcms/html-to-slate-ast": "^0.13.1",
+        "@hygraph/baukasten": "^0.3.0",
+        "@hygraph/management-sdk": "^1.1.2-alpha.1",
+        "@types/node": "18.11.9",
+        "@types/react": "18.0.25",
+        "@types/react-dom": "18.0.9",
+        "cheerio": "^1.0.0-rc.12",
+        "eslint": "8.28.0",
+        "eslint-config-next": "13.0.4",
+        "graphql": "^16.6.0",
+        "graphql-request": "^5.2.0",
+        "jsdom": "^21.1.1",
+        "langchain": "^0.0.26",
+        "next": "13.0.4",
+        "promptable": "^0.0.10",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "slate": "0.58.3",
+        "slate-hyperscript": "0.58.3",
+        "typescript": "4.9.3"
+    }
 }

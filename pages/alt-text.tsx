@@ -72,7 +72,7 @@ function SidebarElement() {
             if (prediction.status === "succeeded") {
                 setIsLoading(false);
                 console.log("alttext:", prediction);
-                form.change("altText", prediction.output);
+                form.change("alternativeText", prediction.output);
             }
         }
     };
@@ -85,7 +85,7 @@ function SidebarElement() {
                 loading={isLoading}
                 loadingText="Loading..."
             >
-                Generate Image Caption
+                Generate Alt Text
             </Button>
         </Flex>
     );
