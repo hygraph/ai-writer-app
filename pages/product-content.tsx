@@ -3,50 +3,45 @@ import { Button, Flex } from "@hygraph/baukasten";
 import { useEffect, useState } from "react";
 import { baseUrl } from "../helpers/common";
 
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-
 function SidebarElement() {
     const {
         installation,
         form,
         entry,
         openDialog,
-        extension: { config },
+        extension: { sidebarConfig },
     } = useFormSidebarExtension();
     const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState<any>(null);
-    const [title, setTitle] = useState<any>(null);
 
     // localizations.en.title
-    const titleField = config.TITLE_FIELD || "title";
+    const titleField = (sidebarConfig.TITLE_FIELD as string) || "title";
 
     // localizations.en.content;
-    const contentField = config.CONTENT_FIELD || "content";
+    const contentField = (sidebarConfig.CONTENT_FIELD as string) || "content";
 
     // @ts-ignore
     const apiKey = installation?.config?.apiKey;
 
-    useEffect(() => {
-        form.getFieldState(titleField as string).then((data: any) => {
-            setTitle(data.value);
-        });
-    }, []);
-
     const handleFieldChange = async (e: any) => {
         e.preventDefault();
         setIsLoading(true);
-        console.log(title);
-        const response = await fetch(`${baseUrl}/api/generate`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                title,
-            }),
-        });
+        const response = await fetch(
+            `${baseUrl}/api/generate/product-content`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        );
         const content = await response.json();
-        form.change(contentField as string, content.response.trim());
+        if (!content.title || !content.content) {
+            setIsLoading(false);
+            alert("error!");
+            return;
+        }
+        form.change("localizations.en.name", content.title);
+        form.change("localizations.en.content", content.content);
         setIsLoading(false);
     };
 
@@ -56,7 +51,7 @@ function SidebarElement() {
                 flex="1"
                 onClick={handleFieldChange}
                 loading={isLoading}
-                loadingText="Loading..."
+                loadingText="Thinking..."
             >
                 Write Content
             </Button>

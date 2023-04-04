@@ -66,18 +66,17 @@ export default async function handler(
         let updateAssetResponse;
         while (!createdAltText) {
             await sleep(1000);
-            const response: any = await fetch(
-                `${baseUrl}/api/assets/${predictionId}`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        apiToken,
-                    }),
-                }
-            );
+            let predictionUrl = `${baseUrl}/api/assets/${predictionId}`;
+            console.log("Prediction URL:", predictionUrl);
+            const response: any = await fetch(predictionUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    apiToken,
+                }),
+            });
             prediction = await response.json();
             if (response.status !== 200) {
                 console.log("error", prediction);
